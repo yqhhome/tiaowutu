@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="360spider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="sogou spider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="yisouspider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bytespider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="yandex" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="shenma-site-verification" content="blocked">
+    <meta name="referrer" content="no-referrer">
+    <title>跳舞兔 - 宇千鹤 VIP 福利流媒体客户端</title>
+    <link rel="icon" href="assets/ttw-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/ttw-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#007aff',
+                            dark: '#3b82f6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --page-bg: #f5f5f7;
+            --bg-glow: rgba(59, 130, 246, 0.3);
+            --bg-glow-2: rgba(147, 51, 234, 0.3);
+            --bg-glow-3: rgba(236, 72, 153, 0.22);
+            --panel-bg: rgba(255, 255, 255, 0.6);
+            --panel-border: rgba(0, 0, 0, 0.05);
+            --panel-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .dark {
+            --page-bg: #000000;
+            --bg-glow: rgba(59, 130, 246, 0.05);
+            --bg-glow-2: rgba(147, 51, 234, 0.04);
+            --bg-glow-3: rgba(236, 72, 153, 0.04);
+            --panel-bg: rgba(0, 0, 0, 0.72);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --panel-shadow: 0 18px 48px rgba(0,0,0,0.55);
+        }
+
+        html, body {
+            background: var(--page-bg);
+        }
+
+        /* 动态渐变背景光晕 */
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: pulse 10s infinite alternate;
+            pointer-events: none;
+        }
+        .dark .bg-glow {
+            opacity: 0.24;
+            filter: blur(160px);
+        }
+        .glow-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--bg-glow); }
+        .glow-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: var(--bg-glow-2); }
+        .glow-3 { top: 40%; left: 30%; width: 35vw; height: 35vw; background: var(--bg-glow-3); animation-delay: -5s; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        /* 毛玻璃面板 */
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            box-shadow: var(--panel-shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-panel-light {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dark .glass-panel-light {
+            box-shadow: var(--panel-shadow);
+        }
+        .light .glass-panel-light:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+        .dark .glass-panel-light:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 20px 56px rgba(0,0,0,0.7);
+        }
+
+        /* 苹果风格按钮 */
+        .btn-apple {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            border-radius: 980px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .btn-apple:hover {
+            background: #000000;
+            transform: scale(1.02);
+        }
+        .dark .btn-apple {
+            background: #f5f5f7;
+            color: #000000;
+        }
+        .dark .btn-apple:hover {
+            background: #ffffff;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(0,0,0,0.15);
+            color: #1d1d1f;
+            border-radius: 980px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background: rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.85);
+            transform: scale(1.02);
+        }
+        .dark .btn-outline {
+            border-color: rgba(255,255,255,0.18);
+            color: #f5f5f7;
+            background: rgba(255,255,255,0.04);
+        }
+        .dark .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* 教程文本高亮 */
+        .highlight {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .light .highlight {
+            color: #007aff;
+        }
+
+        /* 渐变标题 */
+        .gradient-title {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(180deg, #1a1a1f 0%, #4b5563 100%);
+        }
+        .dark .gradient-title {
+            background-image: linear-gradient(180deg, #ffffff 0%, #6b7280 100%);
+        }
+
+        /* 渐变品牌标题（紫粉） */
+        .brand-gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #3b82f6 100%);
+        }
+
+        /* hero 端展示图浮动 */
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* 步骤列表样式 */
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.06);
+        }
+        .dark .step-item {
+            border-color: rgba(255,255,255,0.08);
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        /* tab 切换 */
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            color: #4b5563;
+        }
+        .dark .tab-btn { color: #9ca3af; }
+        .tab-btn.active {
+            background: #1d1d1f;
+            color: #f5f5f7;
+        }
+        .dark .tab-btn.active {
+            background: #f5f5f7;
+            color: #000;
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* 平台 logo 行 */
+        .platform-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.125rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(0,0,0,0.05);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #1d1d1f;
+            backdrop-filter: blur(10px);
+        }
+        .dark .platform-chip {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.08);
+            color: #f5f5f7;
+        }
+
+        /* 截图卡片 */
+        .shot-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease;
+        }
+        .dark .shot-card { box-shadow: 0 14px 40px rgba(0,0,0,0.5); }
+        .shot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+        .dark .shot-card:hover { box-shadow: 0 26px 60px rgba(0,0,0,0.6); }
+
+        .shot-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+
+        /* 灯箱 */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img { max-width: 100%; max-height: 90vh; border-radius: 16px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+
+        /* 产品演示模态框 */
+        #demo-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        #demo-modal.open { display: flex; animation: demoFade .25s ease both; }
+        @keyframes demoFade { from { opacity: 0; } to { opacity: 1; } }
+        #demo-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(10px);
+        }
+        .demo-card {
+            position: relative;
+            max-width: 1100px;
+            width: 100%;
+            background: #0b0b0f;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 40px 100px rgba(168,85,247,0.25), 0 20px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            animation: demoPop .35s cubic-bezier(.2,.8,.2,1) both;
+        }
+        @keyframes demoPop { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .demo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(236,72,153,0.1));
+        }
+        .demo-header .title {
+            color: #f5f5f7;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .demo-close {
+            color: #d1d5db;
+            background: rgba(255,255,255,0.06);
+            border-radius: 999px;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s ease;
+        }
+        .demo-close:hover { background: rgba(255,255,255,0.14); color: white; }
+        .demo-body {
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+        .demo-body img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 78vh;
+            object-fit: contain;
+        }
+        .demo-footer {
+            padding: 10px 20px;
+            color: #9ca3af;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* hero 平台 logo 轨道 */
+        .logo-track {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 主图边框 */
+        .device-frame {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .dark .device-frame {
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        /* 跳舞兔 logo 徽章（始终白底，确保黑色兔子在深色主题下也清晰可见） */
+        .ttw-logo-badge {
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(0,0,0,0.04);
+            transition: box-shadow .25s ease, transform .25s ease;
+        }
+        .dark .ttw-logo-badge {
+            background: #ffffff;
+            box-shadow: 0 4px 14px rgba(168,85,247,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+        }
+        .group:hover .ttw-logo-badge {
+            transform: scale(1.05);
+        }
+        .dark .group:hover .ttw-logo-badge {
+            box-shadow: 0 6px 20px rgba(236,72,153,0.35), 0 0 0 1px rgba(255,255,255,0.14);
+        }
+
+        /* 大尺寸 logo 徽章（用于品牌展示，例如 footer 或 hero） */
+        .ttw-logo-badge-lg {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 22px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(0,0,0,0.04);
+        }
+        .dark .ttw-logo-badge-lg {
+            box-shadow: 0 10px 36px rgba(168,85,247,0.3), 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        /* 提示横幅 */
+        .vip-banner {
+            background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.12));
+            border: 1px solid rgba(168,85,247,0.25);
+        }
+        .dark .vip-banner {
+            background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(236,72,153,0.14));
+            border-color: rgba(168,85,247,0.35);
+        }
+
+        #ttw-mobile-menu:not(.hidden) {
+            animation: ttwNavIn 0.2s ease-out;
+        }
+        @keyframes ttwNavIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="light antialiased selection:bg-brand-light selection:text-white pb-20 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <!-- 顶部导航 -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-t-0 border-l-0 border-r-0 rounded-none rounded-b-2xl py-3 lg:py-5" aria-label="主导航">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center gap-2">
+            <a href="#" class="flex items-center gap-2 sm:gap-3 group min-w-0" aria-label="跳舞兔 首页">
+                <span class="ttw-logo-badge inline-flex items-center justify-center shrink-0">
+                    <img src="assets/ttw-logo.png" alt="跳舞兔" width="40" height="40" class="h-7 w-7 md:h-8 md:w-8 object-contain block" decoding="async">
+                </span>
+                <span class="text-lg sm:text-xl md:text-2xl font-bold tracking-wider text-black dark:text-white truncate">跳舞兔</span>
+            </a>
+
+            <div class="flex items-center justify-end gap-0.5 sm:gap-1 shrink-0">
+                <div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <a href="#features" class="hover:text-black dark:hover:text-white transition">产品功能</a>
+                    <a href="#screenshots" class="hover:text-black dark:hover:text-white transition">应用截图</a>
+                    <a href="#tutorial" class="hover:text-black dark:hover:text-white transition">使用教程</a>
+                    <a href="#download" class="hover:text-black dark:hover:text-white transition">立即下载</a>
+                    <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-blue-700 dark:text-cyan-300 border border-blue-400/30 hover:from-blue-500/25 hover:to-cyan-500/25 transition">
+                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7m-9 2v8a2 2 0 002 2h2a2 2 0 002-2v-4a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 002 2h2a2 2 0 002-2v-8m-9 4h.01"/></svg>
+                        宇千鹤主站
+                    </a>
+                </div>
+                <button type="button" id="theme-toggle" class="p-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition" aria-label="切换主题">
+                    <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2M5.6 5.6l1.4 1.4m10 10l1.4 1.4M3 12h2m14 0h2M5.6 18.4l1.4-1.4m10-10l1.4-1.4M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+                    <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+                <button type="button" id="ttw-nav-toggle" class="lg:hidden p-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition text-black dark:text-white" aria-expanded="false" aria-controls="ttw-mobile-menu" aria-label="打开菜单">
+                    <svg class="w-6 h-6 ttw-nav-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg class="w-6 h-6 ttw-nav-icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="ttw-mobile-menu" class="lg:hidden hidden border-t border-black/5 dark:border-white/10 max-h-[min(70vh,520px)] overflow-y-auto">
+            <div class="px-4 sm:px-6 py-3 flex flex-col text-sm font-medium text-gray-800 dark:text-gray-200">
+                <a href="#features" class="py-3 border-b border-black/5 dark:border-white/10 hover:text-black dark:hover:text-white">产品功能</a>
+                <a href="#screenshots" class="py-3 border-b border-black/5 dark:border-white/10 hover:text-black dark:hover:text-white">应用截图</a>
+                <a href="#tutorial" class="py-3 border-b border-black/5 dark:border-white/10 hover:text-black dark:hover:text-white">使用教程</a>
+                <a href="#download" class="py-3 border-b border-black/5 dark:border-white/10 hover:text-black dark:hover:text-white">立即下载</a>
+                <a href="index.html" class="mt-2 py-3 px-3 rounded-2xl text-center inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-blue-800 dark:text-cyan-200 border border-blue-400/30 font-semibold">宇千鹤主站</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-32 pb-16 px-6 max-w-7xl mx-auto mt-12 md:mt-16 lg:pt-40">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+            <div class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 vip-banner px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
+                    <span class="text-purple-600 dark:text-purple-300">★ 仅限宇千鹤 VIP 年费及以上会员</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                    <span class="gradient-title">跳舞兔</span><br>
+                    <span class="brand-gradient-text">畅享全球流媒体</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 dark:text-gray-400 mb-8 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+                    宇千鹤倾力打造的 <strong class="text-black dark:text-white">用户专属福利 APP</strong>。
+                    一键登录，免费永久观看 Netflix、Disney+、HBO Max、Prime Video、Crunchyroll 等全球主流平台。
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
+                    <a href="#download" class="btn-apple px-8 py-4 text-base inline-flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+                        立即下载
+                    </a>
+                    <a href="#tutorial" class="btn-outline px-8 py-4 text-base inline-flex items-center justify-center gap-2">
+                        查看使用教程
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <button type="button" onclick="openDemo()" class="btn-outline px-8 py-4 text-base inline-flex items-center justify-center gap-2 group">
+                        <svg class="w-5 h-5 text-pink-500 dark:text-pink-400 group-hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        产品演示
+                    </button>
+                </div>
+
+                <!-- 平台 chips -->
+                <div class="logo-track lg:justify-start">
+                    <span class="platform-chip">Netflix</span>
+                    <span class="platform-chip">Disney+</span>
+                    <span class="platform-chip">HBO Max</span>
+                    <span class="platform-chip">Prime Video</span>
+                    <span class="platform-chip">Crunchyroll</span>
+                </div>
+            </div>
+
+            <!-- Hero 主截图（亮色 + 暗色叠放） -->
+            <div class="relative float-anim">
+                <div class="device-frame relative">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-main-light.jpg" alt="跳舞兔主界面（亮色）" class="block w-full dark:hidden">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-main-dark.jpg" alt="跳舞兔主界面（暗色）" class="hidden w-full dark:block">
+                </div>
+                <!-- 漂浮的 mini login 卡 -->
+                <div class="hidden md:block absolute -bottom-10 -left-10 w-56 lg:w-64 device-frame">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-login.jpg" alt="跳舞兔登录界面" class="block w-full">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 space-y-24">
+
+        <!-- VIP 资格提醒 -->
+        <section>
+            <div class="vip-banner rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.15L2 9.36h7.61z"/></svg>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-lg md:text-xl font-semibold text-black dark:text-white mb-1">使用资格说明</h3>
+                    <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                        跳舞兔为 <strong>宇千鹤 VIP 年费套餐及以上用户</strong> 专属福利，免费永久使用。请先在 <a href="https://yqhhome.github.io/" target="_blank" rel="noopener noreferrer" class="highlight underline-offset-4 hover:underline">宇千鹤官网</a> 升级您的会员套餐。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品功能 -->
+        <section id="features">
+            <div class="mb-12 text-center">
+                <div class="inline-block bg-brand-light/10 text-brand-light dark:bg-brand-dark/15 dark:text-brand-dark px-4 py-2 rounded-full text-sm font-medium mb-3">
+                    一个 APP，看尽全球
+                </div>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-black dark:text-white">为什么选择跳舞兔</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto">无需购买、无需注册海外账号，登录宇千鹤账号即可解锁全部内容</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-purple-500/12 text-purple-600 dark:text-purple-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">免费永久观看</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">作为 VIP 福利，所有支持的流媒体平台均免费、永久使用，无需额外付费购买海外订阅。</p>
+                </div>
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-pink-500/12 text-pink-600 dark:text-pink-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">一键登录即用</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">直接使用宇千鹤官网账号登录，省去注册账号、绑定支付的繁琐流程，开箱即看。</p>
+                </div>
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-blue-500/12 text-blue-600 dark:text-blue-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 000 18M12.5 3a17 17 0 010 18"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">覆盖主流平台</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">五大站各擅胜场：综合片库、迪士尼系、日漫、欧美大片、HBO 精品，一站聚齐。</p>
+                </div>
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-green-500/12 text-green-600 dark:text-green-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" transform="rotate(45 12 12)"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">多账号自由切换</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">部分平台提供多个备用账号，主账号繁忙时可以一键切换，观影体验更加稳定。</p>
+                </div>
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-yellow-500/12 text-yellow-600 dark:text-yellow-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M5 12h14"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">深浅双色主题</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">支持白天 / 夜晚双模式切换，UI 设计精致细腻，长时间观看也不疲劳。</p>
+                </div>
+                <div class="glass-panel-light p-8">
+                    <div class="w-14 h-14 mb-6 flex items-center justify-center rounded-2xl bg-red-500/12 text-red-600 dark:text-red-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-black dark:text-white">账号本地保存</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">勾选 "记住我"，账号密码安全存储到本地设备，下次打开无需重复登录。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品截图 -->
+        <section id="screenshots" class="pt-10 border-t border-gray-100 dark:border-white/10">
+            <div class="mb-12 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-black dark:text-white">应用截图展示</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">点击截图可放大。卡片内为各平台核心优势，便于选型。</p>
+            </div>
+
+            <!-- 主界面 + 登录 -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-main-light.jpg" alt="跳舞兔主界面 - 浅色模式" loading="lazy">
+                    <figcaption class="px-5 py-4 flex items-center justify-between">
+                        <span class="font-semibold text-black dark:text-white">主界面 · 白天模式</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">柔和渐变背景</span>
+                    </figcaption>
+                </figure>
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-main-dark.jpg" alt="跳舞兔主界面 - 深色模式" loading="lazy">
+                    <figcaption class="px-5 py-4 flex items-center justify-between">
+                        <span class="font-semibold text-black dark:text-white">主界面 · 夜晚模式</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">深邃星空风格</span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <figure class="shot-card md:col-span-1">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-login.jpg" alt="跳舞兔登录界面" loading="lazy">
+                    <figcaption class="px-5 py-4">
+                        <span class="font-semibold text-black dark:text-white">登录界面</span>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">使用宇千鹤官网账号一键登录</p>
+                    </figcaption>
+                </figure>
+                <figure class="shot-card md:col-span-2">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-product-disney.jpg" alt="在跳舞兔中浏览 Disney+ 香港站首页" loading="lazy">
+                    <figcaption class="px-5 py-4">
+                        <span class="font-semibold text-black dark:text-white">Disney+</span>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1.5 leading-snug">迪士尼、漫威、皮克斯、星战等自家 IP 最全，亲子与英雄宇宙大片集中。</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- 平台展示：一句话优势 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-product-netflix.jpg" alt="在跳舞兔中浏览 Netflix 中文界面" loading="lazy">
+                    <figcaption class="px-4 py-3">
+                        <span class="font-semibold text-sm text-black dark:text-white">Netflix</span>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 leading-snug">综合片库最大、类型最全，原创剧与全球热门一站式。</p>
+                    </figcaption>
+                </figure>
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-product-crunchyroll.jpg" alt="在跳舞兔中浏览 Crunchyroll《海贼王》页面" loading="lazy">
+                    <figcaption class="px-4 py-3">
+                        <span class="font-semibold text-sm text-black dark:text-white">Crunchyroll</span>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 leading-snug">专注日漫：新番与连载最全，追番首选。</p>
+                    </figcaption>
+                </figure>
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-product-prime.jpg" alt="在跳舞兔中浏览 Amazon Prime Video" loading="lazy">
+                    <figcaption class="px-4 py-3">
+                        <span class="font-semibold text-sm text-black dark:text-white">Prime Video</span>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 leading-snug">欧美热剧与电影多，亚马逊原创体量大，常与 Prime 会员绑定。</p>
+                    </figcaption>
+                </figure>
+                <figure class="shot-card">
+                    <img src="https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-product-hbomax.jpg" alt="在跳舞兔中浏览 HBO Max 首页" loading="lazy">
+                    <figcaption class="px-4 py-3">
+                        <span class="font-semibold text-sm text-black dark:text-white">HBO Max</span>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 leading-snug">HBO 高口碑剧 + 华纳影视库，精品剧与院线级内容强。</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 使用前置条件 -->
+        <section class="pt-10 border-t border-gray-100 dark:border-white/10">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-black dark:text-white">使用前请准备</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg">两个必备前置条件，缺一不可</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-panel-light p-8 flex gap-5">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue-500/12 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                        <svg class="w-7 h-7" viewBox="0 0 48 48" fill="currentColor"><circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="3.5"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-black dark:text-white mb-2">① 安装谷歌浏览器</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">无论 Mac 还是 Windows，必须使用谷歌 Chrome 浏览器配合使用。</p>
+                        <a href="https://www.google.com/chrome" target="_blank" rel="noopener noreferrer" class="text-brand-light dark:text-brand-dark text-sm font-medium hover:underline inline-flex items-center gap-1">
+                            前往下载 Chrome
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="glass-panel-light p-8 flex gap-5">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-purple-500/12 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-black dark:text-white mb-2">② 开启宇千鹤全局代理</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">使用前请先在宇千鹤客户端开启 <strong>全局代理模式</strong>，并确保您的套餐为年费及以上。</p>
+                        <a href="index.html" class="text-brand-light dark:text-brand-dark text-sm font-medium hover:underline inline-flex items-center gap-1">
+                            查看宇千鹤客户端教程
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教程 -->
+        <section id="tutorial" class="pt-10 border-t border-gray-100 dark:border-white/10">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-black dark:text-white">详细使用教程</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg">请根据您的电脑系统选择对应教程</p>
+            </div>
+
+            <!-- Tab 切换 -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1.5 rounded-full bg-black/5 dark:bg-white/5 backdrop-blur-md gap-1">
+                    <button class="tab-btn active" data-tab="mac">
+                        <span class="inline-flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="-2 0 24 24"><path d="m20.091 17.524c-.451 1.375-1.053 2.569-1.805 3.651l.03-.046q-1.861 2.827-3.706 2.827c-.739-.052-1.426-.217-2.064-.478l.044.016c-.642-.267-1.387-.434-2.167-.461h-.011c-.747.029-1.447.201-2.083.49l.035-.014c-.556.269-1.204.445-1.889.49l-.015.001q-2.192 0-4.342-3.735c-1.269-2.072-2.048-4.565-2.12-7.236v-.02c-.005-.107-.008-.233-.008-.36 0-1.892.614-3.641 1.654-5.059l-.017.024c.92-1.266 2.395-2.08 4.061-2.08h.037-.002c.922.031 1.796.187 2.621.452l-.068-.019c.578.201 1.252.354 1.95.428l.041.004c.759-.067 1.459-.241 2.111-.508l-.048.017c.738-.279 1.591-.456 2.48-.49h.015.07c1.123 0 2.164.351 3.019.949l-.017-.011c.572.416 1.066.89 1.488 1.424l.012.016c-.62.5-1.161 1.059-1.627 1.678l-.017.024c-.587.823-.938 1.85-.938 2.958v.029-.001.062c0 1.181.373 2.275 1.007 3.171l-.012-.017c.53.842 1.316 1.481 2.248 1.814l.031.01zm-5.423-16.918c-.02.712-.172 1.383-.432 1.998l.014-.036c-.323.778-.776 1.441-1.34 1.992l-.001.001c-.423.452-.944.807-1.53 1.031l-.028.009c-.437.12-.949.207-1.475.243l-.025.001c0-.008 0-.018 0-.028 0-1.372.42-2.647 1.139-3.701l-.015.023c.874-1.114 2.132-1.891 3.572-2.134l.034-.005z"/></svg>
+                            Mac 用户教程
+                        </span>
+                    </button>
+                    <button class="tab-btn" data-tab="win">
+                        <span class="inline-flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/></svg>
+                            Windows 用户教程
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mac 教程 -->
+            <div id="tab-mac" class="tab-pane active glass-panel-light p-6 md:p-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="inline-block w-1.5 h-7 rounded-full bg-gradient-to-b from-purple-500 to-pink-500"></span>
+                    <h3 class="text-2xl font-semibold text-black dark:text-white">Mac 用户使用教程</h3>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">Mac 苹果电脑用户首先必须下载 <span class="highlight">谷歌浏览器</span>（必须）。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">谷歌浏览器下载地址：<a href="https://www.google.com/chrome" target="_blank" rel="noopener noreferrer" class="highlight underline-offset-4 hover:underline break-all">https://www.google.com/chrome</a></p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">必须先开启 <span class="highlight">宇千鹤全局代理</span>，并且宇千鹤套餐为 <strong>年套餐及以上</strong> 用户。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">下载后把解压出来的 <span class="highlight">"跳舞兔" 客户端</span> 直接拖拽到 <span class="highlight">"访达" — "应用程序"</span> 里面。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">5</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">点击运行 "跳舞兔" APP。此时会提示类似：<span class="highlight">"无法打开 xxx，因为 Apple 无法检查其是否包含恶意软件"</span>。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">6</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">点击 <span class="highlight">"好"</span> 或者 <span class="highlight">"完成"</span>（<strong class="text-red-500 dark:text-red-400">请勿点击删除</strong>）。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">7</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">前往 <span class="highlight">"系统设置" — "隐私与安全性"</span>，往下拉找到 <span class="highlight">"安全性"</span> 这一栏。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">8</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">会看到一个 <span class="highlight">"仍要打开"</span> 的按钮，点击此按钮。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">9</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">输入你的苹果电脑密码就可以正常打开了。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">10</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">登录上你的 <span class="highlight">宇千鹤官网</span> 邮箱账号和密码，开始享受！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Windows 教程 -->
+            <div id="tab-win" class="tab-pane glass-panel-light p-6 md:p-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="inline-block w-1.5 h-7 rounded-full bg-gradient-to-b from-blue-500 to-cyan-400"></span>
+                    <h3 class="text-2xl font-semibold text-black dark:text-white">Windows 用户使用教程</h3>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">首先 <span class="highlight">卸载所有的杀毒软件</span>，并关闭系统自带的杀毒软件和防火墙。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">Windows 电脑用户必须下载 <span class="highlight">谷歌浏览器</span>（必须）。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">谷歌浏览器下载地址：<a href="https://www.google.com/chrome" target="_blank" rel="noopener noreferrer" class="highlight underline-offset-4 hover:underline break-all">https://www.google.com/chrome</a></p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">必须先开启 <span class="highlight">宇千鹤全局代理</span>，并且宇千鹤套餐为 <strong>年套餐及以上</strong> 用户。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">5</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">点击下方 <span class="highlight">"点我下载"</span> 按钮获取我们的 "跳舞兔" 福利 APP。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">6</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">下载好以后鼠标右键解压文件，你会看到类似 <span class="highlight">"跳舞兔.exe"</span> 这个文件。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">7</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">找到以后，在此文件上鼠标右键，选择 <span class="highlight">"以管理员身份运行"</span>。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">8</div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed pt-1">登录上你的 <span class="highlight">宇千鹤官网</span> 邮箱账号和密码，开始享受！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 下载 CTA -->
+        <section id="download" class="pt-10">
+            <div class="glass-panel-light p-10 md:p-14 text-center relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-72 h-72 bg-purple-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <h2 class="relative text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">现在就开始畅享全球流媒体</h2>
+                <p class="relative text-gray-600 dark:text-gray-400 text-base md:text-lg mb-10 max-w-2xl mx-auto">
+                    请确保您已开通 <strong>宇千鹤年费及以上 VIP 套餐</strong>，并已开启全局代理。
+                </p>
+
+                <div class="relative grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+                    <a id="download-mac" href="#" class="btn-apple py-5 inline-flex items-center justify-center gap-3 text-base">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="-2 0 24 24"><path d="m20.091 17.524c-.451 1.375-1.053 2.569-1.805 3.651l.03-.046q-1.861 2.827-3.706 2.827c-.739-.052-1.426-.217-2.064-.478l.044.016c-.642-.267-1.387-.434-2.167-.461h-.011c-.747.029-1.447.201-2.083.49l.035-.014c-.556.269-1.204.445-1.889.49l-.015.001q-2.192 0-4.342-3.735c-1.269-2.072-2.048-4.565-2.12-7.236v-.02c-.005-.107-.008-.233-.008-.36 0-1.892.614-3.641 1.654-5.059l-.017.024c.92-1.266 2.395-2.08 4.061-2.08h.037-.002c.922.031 1.796.187 2.621.452l-.068-.019c.578.201 1.252.354 1.95.428l.041.004c.759-.067 1.459-.241 2.111-.508l-.048.017c.738-.279 1.591-.456 2.48-.49h.015.07c1.123 0 2.164.351 3.019.949l-.017-.011c.572.416 1.066.89 1.488 1.424l.012.016c-.62.5-1.161 1.059-1.627 1.678l-.017.024c-.587.823-.938 1.85-.938 2.958v.029-.001.062c0 1.181.373 2.275 1.007 3.171l-.012-.017c.53.842 1.316 1.481 2.248 1.814l.031.01z"/></svg>
+                        下载 Mac 版
+                    </a>
+                    <a id="download-win" href="#" class="btn-apple py-5 inline-flex items-center justify-center gap-3 text-base">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/></svg>
+                        下载 Windows 版
+                    </a>
+                </div>
+
+                <p class="relative text-xs text-gray-500 dark:text-gray-500 mt-8">下载链接由宇千鹤官方提供，请勿外传 · 仅供 VIP 会员使用</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-28 border-t border-gray-100 py-10 pb-8 text-center text-gray-500 text-sm dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 space-y-2">
+            <p>© 2026 宇千鹤 · 跳舞兔. 保留所有权利.</p>
+            <p class="text-xs text-gray-400">本福利仅供宇千鹤 VIP 年费及以上用户使用，请勿用于商业用途。</p>
+        </div>
+    </footer>
+
+    <!-- 截图灯箱 -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- 产品演示模态框（GIF 自动播放） -->
+    <div id="demo-modal" role="dialog" aria-modal="true" aria-label="跳舞兔产品演示">
+        <div id="demo-overlay"></div>
+        <div class="demo-card">
+            <div class="demo-header">
+                <span class="title">
+                    <span class="inline-block w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+                    跳舞兔 · 产品演示
+                </span>
+                <button type="button" class="demo-close" onclick="closeDemo()" aria-label="关闭演示">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="demo-body">
+                <img id="demo-img" src="" alt="跳舞兔产品演示动图">
+            </div>
+            <div class="demo-footer">
+                <span>演示动图 · 自动循环播放</span>
+                <span>按 ESC 或点击空白处关闭</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 主题切换（持久化）
+        (function () {
+            const saved = localStorage.getItem('ttw-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const useDark = saved ? saved === 'dark' : prefersDark;
+            document.documentElement.classList.toggle('dark', useDark);
+            document.body.classList.toggle('dark', useDark);
+            document.body.classList.toggle('light', !useDark);
+        })();
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark', isDark);
+            document.body.classList.toggle('light', !isDark);
+            localStorage.setItem('ttw-theme', isDark ? 'dark' : 'light');
+        });
+
+        // Tab 切换
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === `tab-${tab}`));
+            });
+        });
+
+        // 灯箱
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.shot-card img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+            });
+        });
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+        }
+
+        // 下载链接
+        const DL_MAC = 'https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/%E8%B7%B3%E8%88%9E%E5%85%94-Mac.zip';
+        const DL_WIN = 'https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/%E8%B7%B3%E8%88%9E%E5%85%94-windows.zip';
+        document.getElementById('download-mac').href = DL_MAC;
+        document.getElementById('download-win').href = DL_WIN;
+
+        // 产品演示弹窗
+        const demoModal = document.getElementById('demo-modal');
+        const demoImg = document.getElementById('demo-img');
+        function openDemo() {
+            // 强制重设 src 让 GIF 从头自动播放
+            demoImg.src = '';
+            demoImg.src = 'https://pub-7b132444eb5145b394deacb7fc09b336.r2.dev/tiaowutu/res/assets/ttw-demo.gif?t=' + Date.now();
+            demoModal.classList.add('open');
+            document.body.classList.add('overflow-hidden');
+        }
+        function closeDemo() {
+            demoModal.classList.remove('open');
+            document.body.classList.remove('overflow-hidden');
+            demoImg.src = '';
+        }
+        demoModal.addEventListener('click', (e) => {
+            if (e.target === demoModal || e.target.id === 'demo-overlay') closeDemo();
+        });
+        const ttwMobileNav = { isOpen: () => false, close: () => {} };
+        (function () {
+            const ttwBtn = document.getElementById('ttw-nav-toggle');
+            const ttwPanel = document.getElementById('ttw-mobile-menu');
+            if (ttwBtn && ttwPanel) {
+                const o = ttwBtn.querySelector('.ttw-nav-icon-open');
+                const c = ttwBtn.querySelector('.ttw-nav-icon-close');
+                function ttwSetOpen(open) {
+                    ttwPanel.classList.toggle('hidden', !open);
+                    ttwBtn.setAttribute('aria-expanded', open);
+                    ttwBtn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+                    o.classList.toggle('hidden', open);
+                    c.classList.toggle('hidden', !open);
+                }
+                ttwBtn.addEventListener('click', () => ttwSetOpen(ttwPanel.classList.contains('hidden')));
+                ttwPanel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => ttwSetOpen(false)));
+                window.addEventListener('resize', () => { if (window.innerWidth >= 1024) ttwSetOpen(false); });
+                ttwMobileNav.isOpen = () => !ttwPanel.classList.contains('hidden');
+                ttwMobileNav.close = () => ttwSetOpen(false);
+            }
+        })();
+
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            if (ttwMobileNav.isOpen()) {
+                ttwMobileNav.close();
+                return;
+            }
+            if (lightbox.classList.contains('open')) {
+                closeLightbox();
+                return;
+            }
+            if (demoModal.classList.contains('open')) closeDemo();
+        });
+    </script>
+</body>
+</html>
